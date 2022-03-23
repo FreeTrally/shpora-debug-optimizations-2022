@@ -19,8 +19,9 @@ namespace JPEG
 			{
 				Console.WriteLine(IntPtr.Size == 8 ? "64-bit version" : "32-bit version");
 				var sw = Stopwatch.StartNew();
+                //var fileName = @"earth.bmp";
 				var fileName = @"sample.bmp";
-//				var fileName = "Big_Black_River_Railroad_Bridge.bmp";
+				//var fileName = "Big_Black_River_Railroad_Bridge.bmp";
 				var compressedFileName = fileName + ".compressed." + CompressionQuality;
 				var uncompressedFileName = fileName + ".uncompressed." + CompressionQuality + ".bmp";
 				
@@ -78,7 +79,8 @@ namespace JPEG
 			Dictionary<BitsWithLength, byte> decodeTable;
 			var compressedBytes = HuffmanCodec.Encode(allQuantizedBytes, out decodeTable, out bitsCount);
 
-			return new CompressedImage {Quality = quality, CompressedBytes = compressedBytes, BitsCount = bitsCount, DecodeTable = decodeTable, Height = matrix.Height, Width = matrix.Width};
+			return new CompressedImage {Quality = quality, CompressedBytes = compressedBytes, 
+                BitsCount = bitsCount, DecodeTable = decodeTable, Height = matrix.Height, Width = matrix.Width};
 		}
 		
 		private static Matrix Uncompress(CompressedImage image)
