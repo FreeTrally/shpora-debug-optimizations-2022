@@ -34,11 +34,23 @@ namespace Benchmarks.Benchmarks
 
 		#endregion
 	}
-	public struct S
-	{
+
+	public struct S : IEquatable<S>
+    {
 		public int N;
 		public string Str;
-	}
+
+        public override bool Equals(object obj)
+        {
+            return obj is S s && Equals(s);
+        }
+
+        public bool Equals(S other)
+        {
+            return N == other.N &&
+                   Str == other.Str;
+        }
+    }
 
 	[SimpleJob(warmupCount: 5, targetCount: 7)]
 	public class StructVsClassBenchmark

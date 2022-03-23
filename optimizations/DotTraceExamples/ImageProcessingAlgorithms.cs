@@ -119,8 +119,11 @@ namespace DotTraceExamples
 			var d = Math.Abs(centerRed - neighborRed) + Math.Abs(centerGreen - neighborGreen) +
 					Math.Abs(centerBlue - neighborBlue);
 
-			return Math.Pow(1 - d, multiplicationFactor);
-		}
+            var md = 1 - d;
+            var res = md * md * md * md * md * md * md * md * md * md;
+			//return Math.Pow(1 - d, multiplicationFactor);
+            return res;
+        }
 
 		#endregion
 
